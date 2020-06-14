@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const webpack = require('webpack');
 const cssnano = require('cssnano');
 const glob = require('glob');
@@ -57,11 +59,11 @@ const cssExtract = new MiniCssExtractPlugin({
 const paths = [];
 const generateHTMLPlugins = () => glob.sync('./src/**/*.pug').map((dir) => {
   const pathToFile = path.relative(process.cwd(), dir);
-  const filename = pathToFile.replace('pug', 'html').replace('src/', '');
+  const filename = pathToFile.replace('pug', 'html')
+    .replace('src/', '')
+    .replace('src\\', '');
 
-  // if (filename !== '404.pug') {
-    paths.push(pathToFile);
-  // }
+  paths.push(pathToFile);
 
   return new HTMLWebpackPlugin({
     filename,
